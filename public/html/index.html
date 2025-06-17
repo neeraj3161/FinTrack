@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- already sharing the public folder so just mention the folder after it -->
+    <link href="/css/output.css" rel="stylesheet">
+    <title>Expense tracker app</title>
+</head>
+<body class="bg-slate-950 h-screen ">
+      <div class="flex flex-col h-full justify-center items-center">
+        <h1 class="text-white">Expense tracker app</h1>
+<input
+  name="amount"
+  class="p-2 rounded border-b bg-transparent border-gray-300 focus:outline-none focus:ring-2 text-amber-50 text-center focus:ring-blue-500 focus:border-blue-500"
+  type="number"
+  placeholder="Enter amount"
+/>
+
+<input
+  name="amount"
+  class="p-2 my-7 rounded border-b bg-transparent  h-12 border-gray-300 focus:outline-none focus:ring-2 text-amber-50 text-center focus:ring-blue-500 focus:border-blue-500"
+  type="text"
+  placeholder="Summary"
+/>
+
+<select name="category-options" id="category" class="w-36 border-1 rounded-md bg-white border-gray-300">
+  <option class="text-black bg-amber-900" value="1">Misc</option>
+  <option class="text-black hover:bg-red-600" value="2">Debt</option>
+  <option class="text-black" value="3">EMI</option>
+  <option class="text-black" value="4">Other</option>
+
+</select>
+
+<input
+  name="newCat"
+  class="p-2 my-7 rounded border-b bg-transparent  h-12 border-gray-300 focus:outline-none focus:ring-2 text-amber-50 text-center focus:ring-blue-500 focus:border-blue-500"
+  type="text"
+  placeholder="Add category"
+/>
+<div class="mode-main flex flex-row">
+<div>
+   
+<input type="radio" name="mode" id="1" value="UPI" checked>
+<label for="1" class="text-white">UPI</label>
+</div>
+<div>
+  <input type="radio" name="mode" id="2" value="Cash">
+<label for="1" class="text-white">Cash</label>
+
+</div>
+<div>
+<input type="radio" name="mode" id="3" value="CHQ"> 
+<label for="1" class="text-white">CHQ</label>
+
+
+</div>
+</div>
+
+
+<button type="submit" class="p-2 rounded-md bg-transparent border border-blue-500 w-36 cursor-pointer my-4 hover:bg-blue-900 text-amber-50">Submit</button>
+
+
+      </div>
+</body>  
+</html>

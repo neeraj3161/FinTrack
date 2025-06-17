@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+
+
+/* removing the input arrows for chrome */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+  margin: 0;
+}
+
+/* for firefox */
+
+input[type=number]{
+    -moz-appearance: none;
+}
