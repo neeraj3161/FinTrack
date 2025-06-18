@@ -1,16 +1,18 @@
 const {Pool} = require("pg");
 
+require("dotenv").config();
+
 let pool;
 
 function getDbInstance(){
     if(!pool)
     {
         pool = new Pool({
-            user:"",
-            host:"",
-            database:"",
-            password:"",
-            port:"",
+            user:process.env.USER,
+            host:process.env.DB_HOST,
+            database:process.env.DB_NAME,
+            password:process.env.DB_PASS,
+            port:process.env.DB_PORT,
         });
 
         pool.on('connect',()=>{
