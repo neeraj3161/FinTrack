@@ -1,0 +1,79 @@
+<%- include('../partials/header') %>
+
+<body class="bg-slate-950 h-screen ">
+    
+     <form class="h-full" action="/submit" method="post">
+
+      <div class="flex flex-col h-full justify-center items-center">
+      <h1 class="text-white font-inter my-7">FinTrackJS</h1>
+
+       <input
+        name="amount"
+        class="p-2 rounded border-b bg-transparent font-inter text-amber-50 text-center "
+        type="number"
+        placeholder="Enter amount" required autocomplete="off"/>
+
+      <input
+        name="summary"
+        class="p-2 my-7 rounded border-b bg-transparent  h-12 border-gray-300 focus:outline-none focus:ring-2 text-amber-50 text-center focus:ring-blue-500 focus:border-blue-500"
+        type="text"
+        placeholder="Summary" required autocomplete="off"/>
+
+      <select name="categoryOptions" id="category"
+        class="w-36 border-1 rounded-md bg-white border-gray-300" onchange="toggleNewCategoryOption()">
+        <% categories.forEach(c=>{%>
+            <option class="text-black" value="<%= c.id %>"><%= c.name.toUpperCase() %></option>
+
+        <% }) %>
+        
+        <option class="text-black" value="-1">OTHER</option>
+
+      </select>
+
+      <input
+        name="newCat"
+        id="addNewCat"
+        class="hidden p-2 my-7 rounded border-b bg-transparent  h-12 border-gray-300 focus:outline-none focus:ring-2 text-amber-50 text-center focus:ring-blue-500 focus:border-blue-500"
+        type="text"
+        placeholder="Add category" autocomplete="off"/>
+      <div class="mode-main flex flex-row justify-around my-7">
+        <% mode.forEach(m=>{ %>
+          <div>
+
+          <input type="radio" name="mode" id="<%= m.id %>" value="<%= m.id %>" <% if(m.id === 1) { %>
+          checked
+        <%}%>>
+          <label for="1" class="text-white"><%= m.name.toUpperCase() %></label>
+        </div>
+        <%});%>
+       
+      </div>
+
+      <button type="submit"
+        class="p-2 rounded-md bg-transparent border border-blue-500 w-36 cursor-pointer my-4 hover:bg-blue-900 text-amber-50">Submit</button>
+
+    </div>
+    </form>
+    
+
+    <script>
+        function toggleNewCategoryOption(){
+            console.log("sds");
+            
+            const selectedValue = document.getElementById("category").value;
+            console.log(selectedValue);
+            
+            const addCatElement = document.getElementById("addNewCat");
+
+        if(selectedValue === "-1")
+        {
+            addCatElement.classList.remove("hidden");
+        }else{
+            addCatElement.classList.add("hidden");
+        }
+        }
+    </script>
+  </body>
+
+
+<%- include('../partials/footer')%>

@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 
 /* removing the input arrows for chrome */
@@ -14,3 +15,12 @@ input::-webkit-inner-spin-button{
 input[type=number]{
     -moz-appearance: none;
 }
+
+input{
+  outline: none;
+}
+
+@theme {
+  --font-inter: "Inter", sans-serif; 
+}
+
