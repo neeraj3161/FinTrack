@@ -44,16 +44,19 @@ app.post('/submit', async(req,res)=>{
     const {amount, summary, mode, categoryOptions, newCat} = req.body;
     console.log(amount,summary,mode,categoryOptions,newCat);
 
-    if(categoryOptions === -1 && await isNewCategory(newCat))
+    if(categoryOptions === '-1' && isNewCategory(newCat))
     {
-        const insertNewCatQuery = `INSERT INTO ext.categories(name) VALUES (${newCat})`;
+        const insertNewCatQuery = `INSERT INTO ext.categories(name) VALUES ('${newCat}')`;
         const result = await db.query(insertNewCatQuery);
-        console.log(result.rows[0].id);
-
-        InsertRecord(amount, summary, result.rows[0].id, mode);
+        console.log(result);
+        const categoryId = await GetCategoryId(newCat);
+        InsertRecord(amount, summary, categoryId, mode);
+        res.send('Record submitted successfully!!');
 
     }else{
          InsertRecord(amount, summary, categoryOptions, mode);
+        res.send('Record submitted successfully!!');
+
     }
     
 })
@@ -61,6 +64,8 @@ app.post('/submit', async(req,res)=>{
 async function InsertRecord(amount,summary,categoryId, modeId)
 {
     // TODO::Add try catch
+    console.log('insert records called');
+    
     const insertRecordQuery = `INSERT INTO ext.expenses(amount, summary, mode, category_id) VALUES (${amount}, '${summary}' ,  ${modeId}, ${categoryId})`
     const result = db.query(insertRecordQuery);
     console.log(result.rows);
@@ -80,7 +85,16 @@ async function addNewCategory(){
 async function isNewCategory(categoryName){
     const query  = `SELECT name FROM ext.categories WHERE name = '${categoryName}'`;
     const result  = await db.query(query);
-    return result.rows.length > 0;
+    console.log("is new category called" ,result.rows);
+    
+    return result.rows.length == 0;
+}
+
+async function GetCategoryId(categoryName)
+{
+    const query = `SELECT id FROM ext.categories WHERE name = '${categoryName}'`;
+    const result = await db.query(query);
+    return result.rows[0].id;
 }
 
 async function GetModeAndCategories()

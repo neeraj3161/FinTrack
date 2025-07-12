@@ -5,7 +5,8 @@
      <form class="h-full" action="/submit" method="post">
 
       <div class="flex flex-col h-full justify-center items-center">
-      <h1 class="text-white font-inter my-7">FinTrackJS</h1>
+      <h1 class="text-white font-montserrat my-7 font-stretch-95% font-thin tracking-wide"><img height="150px"  width="150px" src="/1-removebg-preview.png" alt="" srcset=""></h1>
+
 
        <input
         name="amount"
@@ -21,12 +22,13 @@
 
       <select name="categoryOptions" id="category"
         class="w-36 border-1 rounded-md bg-white border-gray-300" onchange="toggleNewCategoryOption()">
+
         <% categories.forEach(c=>{%>
             <option class="text-black" value="<%= c.id %>"><%= c.name.toUpperCase() %></option>
 
         <% }) %>
-        
         <option class="text-black" value="-1">OTHER</option>
+        
 
       </select>
 
@@ -48,13 +50,16 @@
         <%});%>
        
       </div>
+  
 
       <button type="submit"
         class="p-2 rounded-md bg-transparent border border-blue-500 w-36 cursor-pointer my-4 hover:bg-blue-900 text-amber-50">Submit</button>
 
     </div>
     </form>
-    
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
     <script>
         function toggleNewCategoryOption(){
@@ -72,8 +77,9 @@
             addCatElement.classList.add("hidden");
         }
         }
-    </script>
-  </body>
 
+            $('#category').select2({
+          placeholder: "Select a programming language"});
+          </script>
 
 <%- include('../partials/footer')%>
